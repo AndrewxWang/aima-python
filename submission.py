@@ -277,8 +277,9 @@ def generate_pg_plot(problem: PlanningProblem):
 ################################################################
 # PART 1.3: Landmarks
 ################################################################
-def list_landmarks(problem: PlanningProblem) -> list:
-    """Return a list of 'At' landmarks for the given problem.
+def list_landmarks() -> list:
+    """Return a list of 'At' landmarks for the complex_rush_hour
+    problem.
 
     The return value should be a list of strings, where each string 
     represents one landmark proposition.
@@ -288,7 +289,10 @@ def list_landmarks(problem: PlanningProblem) -> list:
     domain and manual solution to enumerate the required facts.  The
     autograder will verify that your list contains the expected
     landmarks, irrespective of order.
+    
+    The code can be as simple as: return ["...", ...]
     """
+    
     # BEGIN_YOUR_CODE
     
     raise NotImplementedError()
@@ -407,5 +411,5 @@ if __name__ == "__main__":
     """
     TESTING 1.3
     """
-    print(list_landmarks(complex_rush_hour_task()))
+    print(list_landmarks())
 
