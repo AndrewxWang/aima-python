@@ -282,11 +282,11 @@ def extract_planning_graph_stats(problem: PlanningProblem):
     
     # BEGIN_YOUR_CODE
     for level in planner.graph.levels:
-        num_state_literals = len(level.current_state)
-        num_actions = len(level.current_action_links)
-        num_state_mutex = len(level.state_mutexes)
-        num_action_mutex = len(level.action_mutexes)
-        stats.append((num_state_literals, num_actions, num_state_mutex, num_action_mutex))
+        n_facts = len(level.current_state)
+        n_actions = len(level.current_action_links)
+        n_state_mutex = len(level.state_mutexes)
+        n_facts = len(level.action_mutexes)
+        stats.append((n_facts, n_actions, n_state_mutex, n_facts))
     # END_YOUR_CODE
 
     return stats
