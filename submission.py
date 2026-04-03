@@ -285,8 +285,8 @@ def extract_planning_graph_stats(problem: PlanningProblem):
         n_facts = len(level.current_state)
         n_actions = len(level.current_action_links)
         n_state_mutex = len(level.state_mutexes)
-        n_facts = len(level.action_mutexes)
-        stats.append((n_facts, n_actions, n_state_mutex, n_facts))
+        n_action_mutex = len(level.action_mutexes)
+        stats.append((n_facts, n_actions, n_state_mutex, n_action_mutex))
     # END_YOUR_CODE
 
     return stats
@@ -300,9 +300,27 @@ def generate_pg_plot(pp: PlanningProblem):
     print(stats)
     
     # BEGIN_YOUR_CODE
+    levels = list(range(len(stats)))
 
-    raise NotImplementedError()
-   
+    n_facts, n_actions, n_state_mutex, n_action_mutex = [], [], [], []
+
+    for i in stats:
+        n_facts.append(i[0])
+        n_actions.append(i[1])
+        n_state_mutex.append(i[2])
+        n_action_mutex.append(i[3])
+
+    plt.figure(figsize=(10, 5))
+    plt.plot(levels, n_facts, marker='o', color='blue', label='Number of Facts')
+    plt.plot(levels, n_actions, marker='s', color='orange', label='Number of Actions (incl. No-ops)')
+    plt.plot(levels, n_state_mutex, marker='^', color='green', label='State Mutex Pairs')
+    plt.plot(levels, n_action_mutex, marker='D', color='red', label='Action Mutex Pairs')
+
+    plt.xlabel("Planning Graph Level")
+    plt.ylabel("Count")
+    plt.title("Planning Graph Statistics per Level (GraphPlan)")
+    plt.legend()
+    plt.show()   
     # END_YOUR_CODE
 
 ################################################################
@@ -325,9 +343,29 @@ def list_landmarks() -> list:
     """
     
     # BEGIN_YOUR_CODE
-    
-    raise NotImplementedError()
-    
+    landmarks = []
+
+    landmarks.append("At(R, C4_1)") # initial state
+    landmarks.append("At(R, C4_4)") # goal
+
+    # R can only move horizontal so it must touch all positions to get to C4_4
+    landmarks.append("At(R, C4_2)")
+    landmarks.append("At(R, C4_3)")
+
+    # A is in the way at 4,2 so it must move up (only direction can move) at least once for every solution
+    landmarks.append("At(A, C3_2)")
+
+    # B is also in the way of the path so it must move up (only direction as well)
+    landmarks.append("At(B, C3_3)")
+
+    # In order for A to move up, D has to move up as well since D is in the way of A
+    landmarks.append("At(D, C2_2)")
+
+    # For some solutions, the direction C moves is different (left/right), so don't touch
+    # For some solutions, E never moves so don't touch.
+
+
+    return landmarks
     # END_YOUR_CODE
 
 
