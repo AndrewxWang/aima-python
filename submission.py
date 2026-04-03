@@ -343,9 +343,15 @@ def list_landmarks() -> list:
     """
     
     # BEGIN_YOUR_CODE
+    # complex rush hour drawing https://imgur.com/a/pWnOr8d
+
     landmarks = []
 
-    landmarks.append("At(R, C4_1)") # initial state
+    landmarks.append("At(R, C4_1)") # initial states
+    landmarks.append("At(A, C4_2)")
+    landmarks.append("At(B, C4_3)")
+    landmarks.append("At(D, C3_2)")
+
     landmarks.append("At(R, C4_4)") # goal
 
     # R can only move horizontal so it must touch all positions to get to C4_4
